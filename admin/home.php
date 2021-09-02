@@ -5,7 +5,7 @@
  <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>VikkyCMS Admin</title>
+<title>Dashboard < VikkyCMS Admin</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -49,8 +49,8 @@
     <div class="content-header sty-one">
       <h1>Blank page</h1>
       <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li><i class="fa fa-angle-right"></i> Blank page</li>
+        <li><a href="home.php">Home</a></li>
+        <li><i class="fa fa-angle-right"></i>Dashboard</li>
       </ol>
     </div>
     
@@ -60,7 +60,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                This is some text within a card block.
+                                Welcome to Dashboard
                             </div>
                         </div>
                     </div>
@@ -69,9 +69,7 @@
     <!-- /.content --> 
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">Version 1.0</div>
-    Copyright © 2018 Yourdomian. All rights reserved.</footer>
+ <?php include 'footer.php'; ?>
 </div>
 <!-- ./wrapper --> 
 

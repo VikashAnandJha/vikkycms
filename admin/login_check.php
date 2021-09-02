@@ -27,6 +27,7 @@ $uname=$drow['name'];
 
 $_SESSION['uid']=$uid;
 $_SESSION['name']=$drow['name'];
+$_SESSION['username']=$drow['username'];
 
 $_SESSION['type']="cms_admin";
 

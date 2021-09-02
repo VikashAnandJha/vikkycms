@@ -1,3 +1,9 @@
+<?php include './inc/db.php';
+
+$siteInfoRow=mysqli_fetch_array(mysqli_query($conn,"select * from website_metadata where id='1'")); 
+
+
+?>
 <!DOCTYPE html>
 <html lang="en-US">
 
@@ -14,11 +20,19 @@
 			timeout: 1500
 		};
 	</script>
-	<link rel="profile" href="http://gmpg.org/xfn/11">
+	 <link rel="icon" href="./uploads/images/<?php echo $siteInfoRow['favicon']; ?>" type="image/gif" sizes="16x16">
 
 	<link media="all" href="css/main.css" rel="stylesheet" />
 	<link media="only screen and (max-width: 768px)" href="css/main2.css" rel="stylesheet" />
-	<title>An delighted offending curiosity my is dashwoods &#8211; Ruki</title>
+	<title><?php echo $siteInfoRow['title'] ;?></title>
+	<meta name="title" content="<?php echo $siteInfoRow['title'] ;?>">
+<meta name="description" content="<?php echo $siteInfoRow['description'] ;?>">
+<meta name="keywords" content="<?php echo $siteInfoRow['keywords'] ;?>">
+
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+<meta name="revisit-after" content="1 days">
 	<link href='https://fonts.gstatic.com' crossorigin='anonymous' rel='preconnect' />
 	<link href='https://ajax.googleapis.com' rel='preconnect' />
 	<link href='https://fonts.googleapis.com' rel='preconnect' />
@@ -225,7 +239,8 @@
 
 	<div class="splash" style="background-color: #fff7f3;">
 		<div class="splash-overlay" style="align-items: center;">
-			<div class="logo-wrapper" style="align-items: center; display:block"><img src="img/prepupsc_logo.png" alt="Prepupsc logo" class="logo" style="width: 200px;"></div>
+			<div class="logo-wrapper" style="align-items: center; display:block">
+			<img src="./uploads/images/<?php echo $siteInfoRow['web_logo']; ?>" alt=" logo" class="logo" style="width: 200px;"></div>
 			<h2><span>A <strong>Complete</strong> UPSC Exam Preparation Portal</span></h2>
 			<p class="author">Made for & By Civil services aspirants</p>
 		</div>

@@ -1,3 +1,4 @@
+
 <header id="site-header" class="site-header logo-below-nav sticky-nav sticky-mobile-nav">
 
 		<!-- mobile header  -->
@@ -6,10 +7,11 @@
 			<div class="toggle toggle-menu mobile-toggle">
 				<span><i class="icon-ruki-menu"></i></span><span class="screen-reader-text">Menu</span>
 			</div>
-			<div class="logo-wrapper"><a href="/index.php" class="custom-logo-link" rel="home"><noscript>
-                <img src="./img/prepupsc_logo.png" alt="PrepUPSC.com" class="custom-logo" width="200" data-height="98" /></noscript>
-                <img src='./img/prepupsc_logo.png' 
-                data-src="./img/prepupsc_logo.png" alt="" 
+			<div class="logo-wrapper">
+				<a href="/index.php" class="custom-logo-link" rel="home"><noscript>
+                <img src="./uploads/images/<?php echo $siteInfoRow['mob_logo']; ?>" alt="PrepUPSC.com" class="custom-logo" width="200" data-height="98" /></noscript>
+                <img src='./uploads/images/<?php echo $siteInfoRow['mob_logo']; ?>' 
+                data-src="./uploads/images/<?php echo $siteInfoRow['mob_logo']; ?>" alt="" 
                 class="lazyload custom-logo" width="200" data-height="98" /></a></div>
 			<div class="toggle toggle-search mobile-toggle">
 				<span><i class="icon-search"></i></span><span class="screen-reader-text">Search</span>
