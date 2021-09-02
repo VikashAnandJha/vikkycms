@@ -29,7 +29,7 @@
                                                                 <td><a href="authors.php?id=<?php echo $arow['id']; ?>&show=edit"><?php echo $arow['id']; ?></a></td>
                                                                 <td><?php echo $arow['name']; ?></td>
                                                                 <td><?php echo $arow['role']; ?></td>
-                                                                <td><span class="label label-success"><?php echo $arow['status']; ?></span></td>
+                                                                <td><span class="label label-<?php if($arow['status']=="ACTIVE") echo "success";if($arow['status']=="BLOCKED") echo "danger"; ?>"><?php echo $arow['status']; ?></span></td>
 
                                                             </tr>
 

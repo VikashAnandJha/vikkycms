@@ -104,23 +104,12 @@
     <script src="dist/plugins/peity/jquery.peity.min.js"></script>
     <script src="dist/plugins/functions/jquery.peity.init.js"></script>
 
-    <script src="dist/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="dist/plugins/dropify/dropify.min.css">
+<script src="dist/plugins/dropify/dropify.min.js"></script>
+<script>
+    $('.dropify').dropify();
+</script>
 
-    <script src="dist/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="dist/plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <script>
-        $(function() {
-            $('#example1').DataTable()
-            $('#example2').DataTable({
-                'paging': true,
-                'lengthChange': false,
-                'searching': false,
-                'ordering': true,
-                'info': true,
-                'autoWidth': false
-            })
-        })
-    </script>
 </body>
 
 </html>

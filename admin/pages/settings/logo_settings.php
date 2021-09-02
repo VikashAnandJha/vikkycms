@@ -53,12 +53,7 @@ $galleryQ=mysqli_query($conn,"insert into uploads(type,file,uploaded_by,uploaded
    
    }
    
-   
-   if($firstImage)
-   {
     
-      header("location:submit_car.php?oid=".$oid."&type=basic&succ=1&msg=Picture UPLOADED"); 
-   }
 
 
 }

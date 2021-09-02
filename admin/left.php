@@ -17,9 +17,11 @@
 }.sidebar-menu > li > a:hover {
    color: #ffffff;
 }
- 
+*, ::after, ::before {
+     box-sizing: initial; 
+}
 </style>
-<aside class="main-sidebar" style="background-color: #384861;   "> 
+<aside class="main-sidebar" style="background-color: #384861; height:100%; position:fixed; "> 
     <!-- sidebar -->
     <div class="sidebar"> 
       <!-- Sidebar user panel -->
