@@ -43,8 +43,15 @@
        
       <li class=" "><a href="index.html"><i class="fa fa-file"></i> <span>Pages</span></a></li>
       <li class=" "><a href="index.html"><i class="fa fa-comments"></i> <span>Comments</span></a></li>
-      <li class=" "><a href="index.html"><i class="fa fa-bars"></i> <span>Menu</span></a></li>
-
+       <li class="treeview">
+           <a href="#"> <i class="fa fa-bars"></i> <span>Menu</span> 
+           <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu">
+            <li><a href="menu.php?show=list" class="active"><i class="fa fa-angle-right"></i>Menu List</a></li>
+            <li><a href="menu.php?show=items" class="active"><i class="fa fa-angle-right"></i> Menu Items</a></li> 
+             
+          </ul>
+        </li>
       <li class=" "><a href="authors.php"><i class="fa fa-user"></i><span> Authors</span></a></li> 
 
       <li class="treeview "> <a href="#"> <i class="fa fa-gear"></i> <span>Settings</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
