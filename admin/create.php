@@ -16,5 +16,11 @@ if($type=="menu")
     $last_id = mysqli_insert_id($conn);
     header('location:menu.php?show=edit&item_id='.$last_id);
 }
+if($type=="page")
+{
+    $q=mysqli_query($conn,"insert into pages(title,status) values('Sample Page','DRAFT')");
+    $last_id = mysqli_insert_id($conn);
+    header('location:pages.php?show=edit&page_id='.$last_id);
+}
 
 ?>

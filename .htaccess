@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^pages/([a-zA-Z0-9_-]+)$ pages.php?page_id=$1
+RewriteRule ^pages/([a-zA-Z0-9_-]+)/$ pages.php?page_id=$1

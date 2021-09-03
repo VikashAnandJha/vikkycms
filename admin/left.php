@@ -31,7 +31,7 @@
 
       <li><a href="home.php"><i class="fa fa-home"></i> <span>Dashboard</span></a></li> 
       <li class="treeview">
-           <a href="#"> <i class="fa fa-sticky-note"></i> <span>Posts</span> 
+           <a href="posts.php"> <i class="fa fa-sticky-note"></i> <span>Posts</span> 
            <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
             <li><a href="ui-cards.html" class="active"><i class="fa fa-angle-right"></i> All Posts</a></li>
@@ -41,8 +41,8 @@
           </ul>
         </li>
        
-      <li class=" "><a href="index.html"><i class="fa fa-file"></i> <span>Pages</span></a></li>
-      <li class=" "><a href="index.html"><i class="fa fa-comments"></i> <span>Comments</span></a></li>
+      <li class=" "><a href="pages.php?show=list"><i class="fa fa-file"></i> <span>Pages</span></a></li>
+      <li class=" "><a href="comments.php"><i class="fa fa-comments"></i> <span>Comments</span></a></li>
        <li class="treeview">
            <a href="#"> <i class="fa fa-bars"></i> <span>Menu</span> 
            <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>

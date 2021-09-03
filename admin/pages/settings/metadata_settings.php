@@ -9,8 +9,9 @@ if($_GET['update']=="yes" && $title)
     $description=$_POST['description'];
     $keywords=$_POST['keywords'];
     $copyright_text=$_POST['copyright_text'];
+    $base_url=$_POST['base_url'];
 
-    $updateQ=mysqli_query($conn,"update website_metadata set site_name='$site_name',title='$title',description='$description',keywords='$keywords',copyright_text='$copyright_text' ");
+    $updateQ=mysqli_query($conn,"update website_metadata set base_url='$base_url',site_name='$site_name',title='$title',description='$description',keywords='$keywords',copyright_text='$copyright_text' ");
 
     if($updateQ) echo "<font color=green>Updated</font>";
 }
@@ -28,6 +29,10 @@ $siteInfoRow=mysqli_fetch_array(mysqli_query($conn,"select * from website_metada
             <fieldset class="form-group">
               <label> title</label>
               <input class="form-control"   type="text" name="title" value="<?php echo $siteInfoRow['title']; ?>">
+            </fieldset> 
+             <fieldset class="form-group">
+              <label> base_url</label>
+              <input class="form-control"   type="text" name="base_url" value="<?php echo $siteInfoRow['base_url']; ?>">
             </fieldset>
             <fieldset class="form-group">
               <label>Description</label>
