@@ -72,6 +72,10 @@
                                     {
                                         include 'pages/menu/menu_items.php';
                                     } 
+                                    if($show=="edit")
+                                    {
+                                        include 'pages/menu/menu_edit.php';
+                                    } 
                                     
 
                                     

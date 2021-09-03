@@ -32,13 +32,29 @@
 
 				<nav class="menu-primary-navigation-container">
 					<ul id="primary-nav" class="primary-nav">
+					
+					<?php
+ $mlqROw = mysqli_fetch_array(mysqli_query($conn, "select * from menu_list where status='ACTIVE'"));
+   $menu_list_id=$mlqROw['id'];
+ 
+ $mq = mysqli_query($conn, "select * from menu_items where menu_list_id='$menu_list_id' and status='ACTIVE' order by item_order desc");
+
+
+
+ while ($mrow = mysqli_fetch_array($mq)) {
+
+
+ 
+
+					?>
+						<li id="menu-item-15" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-15">
+							<a href=""><?php echo $mrow['display_text']; ?></a>
+						</li>
 						 
-						<li id="menu-item-15" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-15"><a href="http://www.3forty.media/ruki/?cat=2">Art &#038; Design</a></li>
-						 
-						<li id="menu-item-18" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-18"><a href="http://www.3forty.media/ruki/?cat=4">Lifestyle</a></li>
-						<li id="menu-item-19" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-19"><a href="http://www.3forty.media/ruki/?cat=6">Travel</a></li>
-						 
-						<li id="menu-item-1025" class="ruki-subscribe menu-item menu-item-type-post_type menu-item-object-page menu-item-1025"><a href="http://www.3forty.media/ruki/?page_id=1022">Subscribe</a></li>
+					 
+						
+						<?php } ?>
+					
 					</ul>
 				</nav>
 				<div class="toggle toggle-search">
