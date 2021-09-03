@@ -50,7 +50,7 @@
       <h1>Blank page</h1>
       <ol class="breadcrumb">
         <li><a href="home.php">Home</a></li>
-        <li><i class="fa fa-angle-right"></i>Dashboard</li>
+        <li><i class="fa fa-angle-right"></i>Tags</li>
       </ol>
     </div>
     

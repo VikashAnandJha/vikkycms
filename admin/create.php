@@ -22,5 +22,11 @@ if($type=="page")
     $last_id = mysqli_insert_id($conn);
     header('location:pages.php?show=edit&page_id='.$last_id);
 }
+if($type=="cat")
+{
+    $q=mysqli_query($conn,"insert into categories(name,status,created_by) values('Test CAtegory','HIDDEN','-1')");
+    $last_id = mysqli_insert_id($conn);
+    header('location:categories.php?show=edit&cat_id='.$last_id);
+}
 
 ?>
