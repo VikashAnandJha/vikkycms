@@ -36,7 +36,7 @@
           <ul class="treeview-menu">
             <li><a href="ui-cards.html" class="active"><i class="fa fa-angle-right"></i> All Posts</a></li>
             <li><a href="ui-cards.html" class="active"><i class="fa fa-angle-right"></i> Categories</a></li>
-            <li><a href="ui-cards.html" class="active"><i class="fa fa-angle-right"></i> Tags</a></li>
+            <li><a href="tags.php" class="active"><i class="fa fa-angle-right"></i> Tags</a></li>
              
           </ul>
         </li>
