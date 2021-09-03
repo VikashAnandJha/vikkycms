@@ -38,7 +38,7 @@ $siteRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadat
                         <input class="form-cont0rol" type="text" name="title"   value="<?php echo $pRow['title']; ?>" style="width: 100%;">
 <br>
 <small>
-    <i><a target="_blank" href="<?php echo $siteRow['base_url']; ?>/pages/<?php echo $pRow['url']; ?>"><?php echo $siteRow['base_url']; ?>/pages/<?php echo $pRow['url']; ?></a></i>
+    <i>PAgeID:<?php echo $page_id; ?> | <a target="_blank" href="<?php echo $siteRow['base_url']; ?>/pages/<?php echo $pRow['url']; ?>"><?php echo $siteRow['base_url']; ?>/pages/<?php echo $pRow['url']; ?></a></i>
 </small>
                     </fieldset>
     

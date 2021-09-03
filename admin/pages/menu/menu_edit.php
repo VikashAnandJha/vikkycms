@@ -86,7 +86,7 @@ if ($_GET['update'] == "yes" && $display_text) {
                 <div class="col-lg-2">
                     <fieldset class="form-group">
                         <label>connected_data</label>
-                        <input class="form-control" type="number" name="connected_data" value="<?php echo $mRow['connected_data']; ?>">
+                        <input class="form-control" type="text" name="connected_data" value="<?php echo $mRow['connected_data']; ?>">
 
                     </fieldset>
                 </div>

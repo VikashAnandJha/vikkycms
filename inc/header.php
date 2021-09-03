@@ -43,12 +43,26 @@
 
  while ($mrow = mysqli_fetch_array($mq)) {
 
-
- 
+$link="#";
+if($mrow['open_type']=="PAGE"){
+	$page_id=$mrow['connected_data'];
+$pRow = mysqli_fetch_array(mysqli_query($conn, "select * from pages where id='$page_id'"));
+$link="pages/".$pRow['url'];
+}
+if($mrow['open_type']=="POST"){
+	$post_id=$mrow['connected_data'];
+$pRow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$post_id'"));
+$link="posts/".$pRow['url'];
+}
+if($mrow['open_type']=="LINK"){ 
+$link= $mrow['connected_data'];
+}
 
 					?>
 						<li id="menu-item-15" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-15">
-							<a href=""><?php echo $mrow['display_text']; ?></a>
+							
+						
+						<a href="<?php echo $link; ?>"><?php echo $mrow['display_text']; ?></a>
 						</li>
 						 
 					 
