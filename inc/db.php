@@ -16,4 +16,5 @@ date_default_timezone_set('Asia/kolkata');
 $conn=mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD,DB_DATABASE);
  
 
+$current_time=date('d-m-Y H:i:s A');
 ?>

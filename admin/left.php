@@ -34,7 +34,7 @@
            <a href="posts.php"> <i class="fa fa-sticky-note"></i> <span>Posts</span> 
            <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
-            <li><a href="ui-cards.html" class="active"><i class="fa fa-angle-right"></i> All Posts</a></li>
+            <li><a href="posts.php" class="active"><i class="fa fa-angle-right"></i>Posts</a></li>
             <li><a href="categories.php" class="active"><i class="fa fa-angle-right"></i> Categories</a></li>
             <li><a href="tags.php" class="active"><i class="fa fa-angle-right"></i> Tags</a></li>
              

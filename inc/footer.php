@@ -10,7 +10,7 @@
 
 				<li class="footer-links">
 
-					<ul id="footer-nav" class="footer-nav">
+					<ul id="footer-nav" class="footer-nav" style="display: none;">
 						<li id="menu-item-296" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-296">
 							<a href="#">About</a>
 						</li>

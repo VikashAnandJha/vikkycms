@@ -11,7 +11,12 @@ if ($_GET['update'] == "yes" && $title) {
 
     $content = $_POST['content']; 
     $status = $_POST['status']; 
-
+    $url = $_POST['url']; 
+    if(!$url){
+        $url=createSlug($title, $delimiter = '-');
+        $url = substr($url, 0, 25); //first 5 chars "Hello"
+    
+    }
     $updateQ = mysqli_query($conn, "update pages set  url='$url',content='$content',title='$title',status='$status' where id='$page_id' ");
 
     if ($updateQ) echo "<font color=green>Page Updated</font>";
@@ -36,13 +41,12 @@ $siteRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadat
     <fieldset class="form-group"  >
                         <label>Page Title</label>
                         <input class="form-cont0rol" type="text" name="title"   value="<?php echo $pRow['title']; ?>" style="width: 100%;">
-<br>
-<small>
-    <i>PAgeID:<?php echo $page_id; ?> | <a target="_blank" href="<?php echo $siteRow['base_url']; ?>/pages/<?php echo $pRow['url']; ?>"><?php echo $siteRow['base_url']; ?>/pages/<?php echo $pRow['url']; ?></a></i>
-</small>
+ 
                     </fieldset>
     
-        
+                    <b> Permalink:</b><?php echo $siteRow['base_url']; ?>/posts/ <input class="form-cont0rol" type="text" name="url"   value="<?php echo $pRow['url']; ?>"  >
+<br>
+    
         <textarea id="summernote" style="max-width: 100%;height: 500px;" name="content"><?php echo $pRow['content']; ?></textarea>
   <script>
     $(document).ready(function() {
@@ -53,8 +57,12 @@ $siteRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadat
   </script> 
    </div>
    <div class="col-lg-2">
+   <div class="card">
+                            <div class="card-body">
+                                
+       <div class="card-title">Publish Options</div>
     <fieldset class="form-group">
-        <label>Publish Options</label><br>
+        <label>visiblity</label><br>
         <select name="status" class="form-co0ntrol" >
                         <option <?php if ($pRow['status'] == "DRAFT") echo "selected"; ?>>DRAFT</option>
                         <option <?php if ($pRow['status'] == "PUBLISHED") echo "selected"; ?>>PUBLISHED</option>
@@ -63,6 +71,8 @@ $siteRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadat
        <br><br>
         <button class="btn btn-primary btn-sm  " type="submit">UPDATE</button>
     </fieldset>
+                            </div>
+   </div>
 
     </div>
     </div>
