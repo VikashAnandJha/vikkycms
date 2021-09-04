@@ -32,6 +32,7 @@ if ($_GET['update'] == "yes" && $title) {
 
 $pRow = mysqli_fetch_array(mysqli_query($conn, "select * from pages where id='$page_id'"));
 $siteRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadata "));
+ 
 
  ?>
   <form method="post" action="?show=edit&update=yes&page_id=<?php echo $page_id; ?>">
@@ -69,6 +70,8 @@ $siteRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadat
                         
                     </select> 
        <br><br>
+       <a target="_blank" href="<?php echo $siteRow['base_url']; ?>/pages/<?php echo $pRow['url']; ?>">View Post</a>
+               <br>
         <button class="btn btn-primary btn-sm  " type="submit">UPDATE</button>
     </fieldset>
                             </div>

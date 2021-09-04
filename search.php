@@ -1,6 +1,8 @@
 <?php include './inc/db.php';
 $cat_id = $_GET['cat_id'];
 
+$query=$_GET['query'];
+$author=$_GET['author'];
 $siteInfoRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadata where id='1'"));
 
 
@@ -9,7 +11,10 @@ $cat_id = $crow['id'];
 
 $cat_row = $crow;
 
+$title=$crow['name'];
+if($query)$title="Searching:".$query;
 
+if($author)$title="Author:".$author;
 
 
 ?>
@@ -34,8 +39,8 @@ $cat_row = $crow;
 
     <link media="all" href="css/main.css" rel="stylesheet" />
     <link media="only screen and (max-width: 768px)" href="css/main2.css" rel="stylesheet" />
-    <title><?php echo $crow['name']; ?> - <?php echo $siteInfoRow['site_name']; ?></title>
-    <meta name="title" content="<?php echo $crow['name']; ?>">
+    <title><?php echo $title; ?> - <?php echo $siteInfoRow['site_name']; ?></title>
+    <meta name="title" content="<?php echo $title; ?>">
     <meta name="description" content="browse items in <?php echo $crow['name']; ?>">
     <meta name="keywords" content="<?php echo $siteInfoRow['keywords']; ?>">
 
@@ -77,8 +82,25 @@ $cat_row = $crow;
 
 
     <?php
+    
+   $q= "select * from posts where status='PUBLISHED' and cat_id='$cat_id' order by id desc ";
 
-    $postq = mysqli_query($conn, "select * from posts where status='PUBLISHED' and cat_id='$cat_id' order by views desc limit 5");
+   if($query)
+   $q= "select * from posts where status='PUBLISHED' and title like '%$query%' order by id desc ";
+
+   if($author){
+    $arow = mysqli_fetch_array(mysqli_query($conn, "select * from authors where id='$author' or username='$author'"));
+    $aid= $arow['id'];
+    if($aid=='1' || $aid=='-1' || $aid=='0')
+    $aid=-1;
+      $q= "select * from posts where status='PUBLISHED' and author='$aid'  order by id desc ";
+
+   }
+  
+
+    
+
+    $postq = mysqli_query($conn, $q);
     $count = mysqli_num_rows($postq);
 
     ?>
@@ -92,7 +114,7 @@ $cat_row = $crow;
 
                 <div class="page-subtitle"><?php echo $count; ?> Posts </div>
 
-                <h1 class="page-title"><?php echo $cat_row['name']; ?></h1>
+                <h1 class="page-title"><?php echo $title; ?></h1>
 
             </header>
 
@@ -148,7 +170,7 @@ $cat_row = $crow;
     <li class="entry-author-meta">
 
         <span class="screen-reader-text">Posted by</span><i>by</i>
-        <a href="author/<?php echo $arow['username']; ?>"><?php echo $author_name; ?></a>
+        <a href="search.php?author=<?php echo $arow['username']; ?>"><?php echo $author_name; ?></a>
 
     </li>
 

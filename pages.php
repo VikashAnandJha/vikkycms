@@ -26,7 +26,7 @@ $pRow = mysqli_fetch_array(mysqli_query($conn, "select * from pages where id='$p
 
     <link media="all" href="css/main.css" rel="stylesheet" />
     <link media="only screen and (max-width: 768px)" href="css/main2.css" rel="stylesheet" />
-    <title><?php echo $siteInfoRow['title']; ?></title>
+    <title><?php echo $pRow['title']; ?>-<?php echo $siteInfoRow['site_name']; ?></title>
     <meta name="title" content="<?php echo $pRow['title']; ?>">
     <meta name="description" content="<?php  echo $desc = substr($pRow['content'], 0, 25);?>">
     <meta name="keywords" content="<?php echo $siteInfoRow['keywords']; ?>">

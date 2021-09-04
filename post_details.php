@@ -140,7 +140,7 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
                                 <li class="category-list">
                                     <ul class="post-categories">
                                         <li class="cat-slug-art-design cat-id-2">
-                                            <a href="category/<?php echo $cat_row['url']; ?>" class="cat-link-2"><?php echo $cat_name; ?></a></li>
+                                            <a href="<?php echo $cat_row['url']; ?>" class="cat-link-2"><?php echo $cat_name; ?></a></li>
                                     </ul>
                                 </li>
 
@@ -160,7 +160,7 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
                                 <li class="entry-author-meta">
 
                                     <span class="screen-reader-text">Posted by</span><i>by</i>
-                                    <a href="author/<?php echo $arow['username']; ?>"><?php echo $author_name; ?></a>
+                                    <a href="search.php?author=<?php echo $arow['username']; ?>"><?php echo $author_name; ?></a>
 
                                 </li>
 

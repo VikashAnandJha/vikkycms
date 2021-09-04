@@ -113,11 +113,11 @@
 	<span class="toggle-search"><i class="icon-cancel"></i></span>
 
 
-	<form role="search" method="get" class="search-form" action="?">
+	<form role="search" method="get" class="search-form" action="search.php">
 		<label for="search-form-612f401230bde">
 			<span class="screen-reader-text">Search for:</span>
 		</label>
-		<input type="search" id="search-form-612f401230bde" class="search-field" placeholder="Search and press Enter" value="" name="s" />
+		<input type="search" id="search-form-612f401230bde" class="search-field" placeholder="Search and press Enter" value="" name="query" />
 		<button type="submit" class="search-submit"><i class="icon-search"></i><span class="screen-reader-text">Search</span></button>
 	</form>
 	<div class="widget widget_tag_cloud">
