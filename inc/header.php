@@ -63,6 +63,11 @@
 						if ($mrow['open_type'] == "LINK") {
 							$link = $mrow['connected_data'];
 						}
+						if ($mrow['open_type'] == "CATEGORY") {
+							$link = $mrow['connected_data'];
+						  $cRow = mysqli_fetch_array(mysqli_query($conn, "select * from categories where id='$link'"));
+						  $link = "./" . $cRow['url'];
+					  }
 
 					?>
 						<li id="menu-item-15" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-15">
@@ -108,7 +113,7 @@
 	<span class="toggle-search"><i class="icon-cancel"></i></span>
 
 
-	<form role="search" method="get" class="search-form" action="http://www.3forty.media/ruki/">
+	<form role="search" method="get" class="search-form" action="?">
 		<label for="search-form-612f401230bde">
 			<span class="screen-reader-text">Search for:</span>
 		</label>
@@ -117,11 +122,19 @@
 	</form>
 	<div class="widget widget_tag_cloud">
 		<h2 class="widgettitle">Categories</h2>
-		<div class="tagcloud"><a href="http://www.3forty.media/ruki/?cat=2" class="tag-cloud-link tag-link-2 tag-link-position-1" style="font-size: 22pt;" aria-label="Art &amp; Design (10 items)">Art &amp; Design<span class="tag-link-count"> (10)</span></a>
-			<a href="http://www.3forty.media/ruki/?cat=3" class="tag-cloud-link tag-link-3 tag-link-position-2" style="font-size: 19.846153846154pt;" aria-label="Beauty (9 items)">Beauty<span class="tag-link-count"> (9)</span></a>
-			<a href="http://www.3forty.media/ruki/?cat=5" class="tag-cloud-link tag-link-5 tag-link-position-3" style="font-size: 11.769230769231pt;" aria-label="Fashion (6 items)">Fashion<span class="tag-link-count"> (6)</span></a>
-			<a href="http://www.3forty.media/ruki/?cat=4" class="tag-cloud-link tag-link-4 tag-link-position-4" style="font-size: 8pt;" aria-label="Lifestyle (5 items)">Lifestyle<span class="tag-link-count"> (5)</span></a>
-			<a href="http://www.3forty.media/ruki/?cat=6" class="tag-cloud-link tag-link-6 tag-link-position-5" style="font-size: 11.769230769231pt;" aria-label="Travel (6 items)">Travel<span class="tag-link-count"> (6)</span></a>
+		<div class="tagcloud">
+		 	
+		<?php
+			 
+			$cq = mysqli_query($conn, "select * from categories where status='ACTIVE' order by id desc limit 5");
+
+
+$i=1;
+			while ($crow = mysqli_fetch_array($cq)) {
+				?>
+		<a href="<?php echo $siteInfoRow['base_url']; ?>/category/<?php echo $crow['url']; ?>" 
+		class="tag-cloud-link tag-link-<?php echo $i; ?> tag-link-position-<?php echo $i; ?>" style="font-size: 19.846153846154pt;" aria-label="<?php echo $crow['url']; ?>"><?php echo $crow['url']; ?></a>
+		  <?php $i++;} ?>
 		</div>
 	</div>
 </div>
@@ -164,6 +177,12 @@
 				}
 				if ($mrow['open_type'] == "LINK") {
 					$link = $mrow['connected_data'];
+				}
+				 
+				if ($mrow['open_type'] == "CATEGORY") {
+					  $link = $mrow['connected_data'];
+					$cRow = mysqli_fetch_array(mysqli_query($conn, "select * from categories where id='$link'"));
+					$link = "./" . $cRow['url'];
 				}
 
 			?>

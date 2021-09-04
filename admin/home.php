@@ -69,6 +69,16 @@ AND YEAR(viewed_on) = YEAR(CURRENT_DATE())"));
 
       $dvtotal = mysqli_num_rows(mysqli_query($conn, "select id from pageviews    "));
 
+      $draft_total = mysqli_num_rows(mysqli_query($conn, "select id from posts where status='DRAFT'    "));
+      $pages_total = mysqli_num_rows(mysqli_query($conn, "select id from pages    "));
+      $comments_pending = mysqli_num_rows(mysqli_query($conn, "select id from comments    "));
+      $posts_total = mysqli_num_rows(mysqli_query($conn, "select id from posts    "));
+
+
+
+
+
+
 
       ?>
       <!-- Main content -->
@@ -140,7 +150,7 @@ AND YEAR(viewed_on) = YEAR(CURRENT_DATE())"));
                           <i class="ti-stats-up text-white text-white"></i></span>
                         <div class="info-box-content">
                           <h6 class="info-box-text text-white">Draft Posts</h6>
-                          <h1 class="text-white"><?php echo $dvtoday; ?></h1>
+                          <h1 class="text-white"><?php echo $draft_total; ?></h1>
                          </div>
                       </div>
                     </div>
@@ -151,7 +161,7 @@ AND YEAR(viewed_on) = YEAR(CURRENT_DATE())"));
                           <i class="fa fa-comments text-white"></i></span>
                         <div class="info-box-content">
                           <h6 class="info-box-text text-white">PendingComments</h6>
-                          <h1 class="text-white"><?php echo $dvtoday; ?></h1>
+                          <h1 class="text-white"><?php echo $comments_pending; ?></h1>
                          </div>
                       </div>
                     </div>
@@ -162,7 +172,7 @@ AND YEAR(viewed_on) = YEAR(CURRENT_DATE())"));
                           <i class="ti-stats-up text-white text-white"></i></span>
                         <div class="info-box-content">
                           <h6 class="info-box-text text-white">Total Posts</h6>
-                          <h1 class="text-white"><?php echo $dvtoday; ?></h1>
+                          <h1 class="text-white"><?php echo $posts_total; ?></h1>
                          </div>
                       </div>
                     </div>
@@ -173,7 +183,7 @@ AND YEAR(viewed_on) = YEAR(CURRENT_DATE())"));
                           <i class="ti-stats-up text-white text-white"></i></span>
                         <div class="info-box-content">
                           <h6 class="info-box-text text-white">Total Pages</h6>
-                          <h1 class="text-white"><?php echo $dvtoday; ?></h1>
+                          <h1 class="text-white"><?php echo $pages_total; ?></h1>
                          </div>
                       </div>
                     </div>

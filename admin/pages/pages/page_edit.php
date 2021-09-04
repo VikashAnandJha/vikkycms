@@ -44,7 +44,7 @@ $siteRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadat
  
                     </fieldset>
     
-                    <b> Permalink:</b><?php echo $siteRow['base_url']; ?>/posts/ <input class="form-cont0rol" type="text" name="url"   value="<?php echo $pRow['url']; ?>"  >
+                    <b> Permalink:</b><?php echo $siteRow['base_url']; ?>/pages/ <input class="form-cont0rol" type="text" name="url"   value="<?php echo $pRow['url']; ?>"  >
 <br>
     
         <textarea id="summernote" style="max-width: 100%;height: 500px;" name="content"><?php echo $pRow['content']; ?></textarea>
