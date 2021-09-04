@@ -15,8 +15,16 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
         
-            <li><a href="#new Post" class=" "><i class="fa fa-sticky-note-o"></i> New Post</a></li>
-          
+            
+            <li class="dropdown user user-menu p-ph-res"> 
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+              <i class="fa fa-sticky-note-o"></i> New
+          </a>
+            <ul class="dropdown-menu">
+            <li><a href="create.php?type=post"><i class="fa fa-sticky-note-o"></i> New POST</a></li>
+            <li><a href="create.php?type=page"><i class="fa fa-sticky-note-o"></i> New PAGE</a></li>
+            </ul>
+            </li>
         
           <!-- User Account  -->
           <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/img1.jpg" class="user-image" alt="User Image">

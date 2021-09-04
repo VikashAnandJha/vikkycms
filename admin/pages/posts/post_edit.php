@@ -77,6 +77,9 @@ if ($_GET['update'] == "yes" && $upload_type) {
 
 $pRow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$post_id'"));
 $siteRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadata "));
+ $cat_id=$pRow['cat_id'];
+$cbq = mysqli_fetch_array(mysqli_query($conn, "select * from categories where id='$cat_id'"));
+$cat_url=$cbq['url'];
 
 ?>
 <form method="post" action="?show=edit&update=yes&post_id=<?php echo $post_id; ?>">
@@ -89,7 +92,7 @@ $siteRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadat
 
             </fieldset>
 
-            <b> Permalink:</b><?php echo $siteRow['base_url']; ?>/posts/ <input class="form-cont0rol" type="text" name="url" value="<?php echo $pRow['url']; ?>">
+            <b> Permalink:</b><?php echo $siteRow['base_url']; ?>/<?php echo $cat_url; ?>/ <input class="form-cont0rol" type="text" name="url" value="<?php echo $pRow['url']; ?>">
             <br>
 
 
@@ -141,7 +144,7 @@ $siteRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadat
                         <button class="btn btn-primary btn-sm  " type="submit">UPDATE</button>
                     </fieldset>
                     <hr>
-                    <a target="_blank" href="<?php echo $siteRow['base_url']; ?>/posts/<?php echo $pRow['url']; ?>">View Post</a>
+                    <a target="_blank" href="<?php echo $siteRow['base_url']; ?>/<?php echo $cat_url; ?>/<?php echo $pRow['url']; ?>">View Post</a>
                 </div>
             </div>
             

@@ -230,13 +230,11 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
 
 
                        
-                            <img width="1600" height="680" src="./uploads/images/<?php echo $prow['featured_image']; ?>" 
+                            <img   src="./uploads/images/<?php echo $prow['featured_image']; ?>" 
                             data-src="./uploads/images/<?php echo $prow['featured_image']; ?>"
                              class="attachment-ruki-hero-image size-ruki-hero-image wp-post-image lazyloaded" alt="" 
-                             data-attachment-id="26" data-permalink="http://www.3forty.media/ruki/?attachment_id=26" 
-                               data-orig-size="2000,1334" data-comments-opened="1"
-                                 
-                                 data-image-description="">
+                           
+                                  >
                     </div><!-- .post-thumbnail -->
 
 
