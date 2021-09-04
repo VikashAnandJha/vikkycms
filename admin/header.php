@@ -34,12 +34,7 @@
                 <div class="pull-left user-img"><img src="dist/img/img1.jpg" class="img-responsive img-circle" alt="User"></div>
                 <p class="text-left"><?php echo $username; ?> <small><?php echo $name; ?></small> </p>
               </li>
-              <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>
-              <li><a href="#"><i class="icon-wallet"></i> My Balance</a></li>
-              <li><a href="#"><i class="icon-envelope"></i> Inbox</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>
-              <li role="separator" class="divider"></li>
+                
               <li><a href="logout.php"><i class="fa fa-power-off"></i> Logout</a></li>
             </ul>
           </li>
