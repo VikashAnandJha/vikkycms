@@ -1,5 +1,6 @@
 <?php include './inc/db.php';
 $post_id = $_GET['post_id'];
+$cat_id = $_GET['cat_id'];
 $siteInfoRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadata where id='1'"));
 $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$post_id' or url='$post_id'"));
 
@@ -26,7 +27,7 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
 
     <link media="all" href="css/main.css" rel="stylesheet" />
     <link media="only screen and (max-width: 768px)" href="css/main2.css" rel="stylesheet" />
-    <title><?php echo $siteInfoRow['title']; ?></title>
+    <title>Post<?php echo $post_id; ?>Cat<?php echo $cat_id; ?>/<?php echo $siteInfoRow['title']; ?></title>
     <meta name="title" content="<?php echo $prow['title']; ?>">
     <meta name="description" content="<?php echo $desc = substr($prow['content'], 0, 25); ?>">
     <meta name="keywords" content="<?php echo $siteInfoRow['keywords']; ?>">
@@ -244,6 +245,7 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
                     <?php
                         $aid = $prow['author'];
                         $cid = $prow['cat_id'];
+                        $post_id = $prow['post_id'];
                         if ($aid == '-1') $aid = 1;
 
 
@@ -271,7 +273,7 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
                                 <li class="category-list">
                                     <ul class="post-categories">
                                         <li class="cat-slug-art-design cat-id-2">
-                                            <a href="http://www.3forty.media/ruki/?cat=2" class="cat-link-2"><?php echo $cat_name; ?></a></li>
+                                            <a href="category/<?php echo $cat_row['url']; ?>" class="cat-link-2"><?php echo $cat_name; ?></a></li>
                                     </ul>
                                 </li>
 
@@ -291,7 +293,7 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
                                 <li class="entry-author-meta">
 
                                     <span class="screen-reader-text">Posted by</span><i>by</i>
-                                    <a href="?posts.php?author=<?php echo $arow['id']; ?>"><?php echo $author_name; ?></a>
+                                    <a href="author/<?php echo $arow['username']; ?>"><?php echo $author_name; ?></a>
 
                                 </li>
 
@@ -364,27 +366,14 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
                     <div class="share bottom">
                         <ul class="social-icons icon-background brand">
                             <li class="share-text">share</li>
-                            <li class="social-icon twitter"><a rel="nofollow" href="https://twitter.com/share?url=http://www.3forty.media/ruki/?p=161&amp;text=Suspicion%20do%20departure%20at%20extremely%20he%20believing&amp;via=#" target="_blank"><i class="icon-twitter"></i></a></li>
-                            <li class="social-icon facebook"><a rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http://www.3forty.media/ruki/?p=161" target="_blank"><i class="icon-facebook"></i></a></li>
-                            <li class="social-icon pinterest"><a rel="nofollow" href="https://pinterest.com/pin/create/button/?url=http://www.3forty.media/ruki/?p=161&amp;media=http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-3.jpg&amp;description=Suspicion+do+departure+at+extremely+he+believing" target="_blank"><i class="icon-pinterest"></i></a></li>
-                            <li class="social-icon linkedin"><a rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.3forty.media/ruki/?p=161&amp;title=Suspicion+do+departure+at+extremely+he+believing" target="_blank"><i class="icon-linkedin"></i></a></li>
-                            <li class="social-icon vkontakte"><a rel="nofollow" href="https://vk.com/share.php?url=http://www.3forty.media/ruki/?p=161&amp;title=Suspicion%20do%20departure%20at%20extremely%20he%20believing" target="_blank"><i class="icon-vkontakte"></i></a></li>
-                            <li class="social-icon odnoklassniki"><a rel="nofollow" href="https://connect.ok.ru/dk?cmd=WidgetSharePreview&amp;st.cmd=WidgetSharePreview&amp;st.shareUrl=http://www.3forty.media/ruki/?p=161" target="_blank"><i class="icon-odnoklassniki"></i></a></li>
-                            <!-- mobile only apps -->
-                            <li class="social-icon whatsapp mobile-only"><a rel="nofollow" href="whatsapp://send?text=http://www.3forty.media/ruki/?p=161" data-action="share/whatsapp/share" target="_blank"><i class="icon-whatsapp"></i></a></li>
-                            <li class="social-icon telegram mobile-only"><a rel="nofollow" href="'https://telegram.me/share/url?url=http://www.3forty.media/ruki/?p=161&amp;text=Suspicion%20do%20departure%20at%20extremely%20he%20believing" target="_blank"><i class="icon-telegram"></i></a></li>
+                            <li class="social-icon twitter"><a rel="nofollow" href="https://twitter.com/share?url=<?php echo $actual_link; ?>&amp;text=<?php echo $prow['title']; ?>&amp;via=#" target="_blank"><i class="icon-twitter"></i></a></li>
+                            <li class="social-icon facebook"><a rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $actual_link; ?>" target="_blank"><i class="icon-facebook"></i></a></li>
+                           <!-- mobile only apps -->
+                            <li class="social-icon whatsapp mobile-only"><a rel="nofollow" href="whatsapp://send?text=<?php echo $actual_link; ?>" data-action="share/whatsapp/share" target="_blank"><i class="icon-whatsapp"></i></a></li>
+                            <li class="social-icon telegram mobile-only"><a rel="nofollow" href="'https://telegram.me/share/url?url=<?php echo $actual_link; ?>&amp;text=<?php echo $prow['title']; ?>" target="_blank"><i class="icon-telegram"></i></a></li>
                         </ul>
                     </div>
-                    <div class="entry-meta post-tags">
-                        <ul>
-                            <li><a href="http://www.3forty.media/ruki/?tag=art" aria-label="art">art</a></li>
-                            <li><a href="http://www.3forty.media/ruki/?tag=creative" aria-label="creative">creative</a></li>
-                            <li><a href="http://www.3forty.media/ruki/?tag=gutenberg" aria-label="gutenberg">gutenberg</a></li>
-                            <li><a href="http://www.3forty.media/ruki/?tag=health" aria-label="health">health</a></li>
-                            <li><a href="http://www.3forty.media/ruki/?tag=music" aria-label="music">music</a></li>
-                            <li><a href="http://www.3forty.media/ruki/?tag=travel" aria-label="travel">travel</a></li>
-                        </ul>
-                    </div>
+                    
                 </footer>
 
              
@@ -392,32 +381,54 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
                 <div id="post-navigation" class="content-area post-navigation flex-grid cols-3 has-prev-post has-next-post square-aspect-ratio">
                     <h2 class="screen-reader-text">Post navigation</h2>
 
-                    <article class="flex-box previous-article has-post-thumbnail">
+                    <?php
+		 
+         $next_post=$post_id-1;
+         $postq = mysqli_query($conn, "select * from posts where status='PUBLISHED' and id='$next_post'");
+   while ($postrow = mysqli_fetch_array($postq)) {
+             $cid=$postrow['cat_id'];
+            $cat_row = mysqli_fetch_array(mysqli_query($conn, "select * from categories where id='$cid'"));
+            $cat_url = $cat_row['url'];
+          ?>
+                    <article class="flex-box next-article has-post-thumbnail">
 
-                        <div class="post-thumbnail">
-                            <a href="http://www.3forty.media/ruki/?p=159"><noscript><img width="600" height="600" src="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-600x600.jpg" class="attachment-ruki-square-image size-ruki-square-image wp-post-image" alt="" srcset="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-600x600.jpg 600w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-300x300.jpg 300w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-100x100.jpg 100w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1024x1024.jpg 1024w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-150x150.jpg 150w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-768x768.jpg 768w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1536x1536.jpg 1536w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1250x1250.jpg 1250w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi.jpg 1737w" sizes="(max-width: 600px) 100vw, 600px" data-attachment-id="30" data-permalink="http://www.3forty.media/ruki/?attachment_id=30" data-orig-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi.jpg" data-orig-size="1737,1737" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="kawaii-sushi" data-image-description="" data-medium-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-300x300.jpg" data-large-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1024x1024.jpg" /></noscript><img width="600" height="600" src="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-600x600.jpg" data-src="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-600x600.jpg" class="attachment-ruki-square-image size-ruki-square-image wp-post-image ls-is-cached lazyloaded" alt="" data-srcset="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-600x600.jpg 600w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-300x300.jpg 300w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-100x100.jpg 100w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1024x1024.jpg 1024w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-150x150.jpg 150w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-768x768.jpg 768w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1536x1536.jpg 1536w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1250x1250.jpg 1250w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi.jpg 1737w" data-sizes="(max-width: 600px) 100vw, 600px" data-attachment-id="30" data-permalink="http://www.3forty.media/ruki/?attachment_id=30" data-orig-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi.jpg" data-orig-size="1737,1737" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="kawaii-sushi" data-image-description="" data-medium-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-300x300.jpg" data-large-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1024x1024.jpg" sizes="(max-width: 600px) 100vw, 600px" srcset="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-600x600.jpg 600w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-300x300.jpg 300w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-100x100.jpg 100w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1024x1024.jpg 1024w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-150x150.jpg 150w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-768x768.jpg 768w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1536x1536.jpg 1536w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi-1250x1250.jpg 1250w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-sushi.jpg 1737w"></a>
-                        </div>
+                         
                         <header class="entry-header">
                             <div class="entry-meta before-title prev-next-pill">
-                                <span>previous post</span>
+                                <span>prev post</span>
                             </div>
-                            <h3 class="entry-title"><a href="http://www.3forty.media/ruki/?p=159">Astonished and acceptance men two discretion</a></h3>
+                            <h3 class="entry-title"><a href="<?php echo $cat_url ;?>/<?php echo $prow['url'] ;?>"><?php echo $prow['title'] ;?></a></h3>
                         </header>
                     </article>
 
+
+                </div>
+
+                <?php } ?>
+                    <?php
+		 
+         $next_post=$post_id+1;
+         $postq = mysqli_query($conn, "select * from posts where status='PUBLISHED' and id='$next_post'");
+   while ($postrow = mysqli_fetch_array($postq)) {
+             $cid=$postrow['cat_id'];
+            $cat_row = mysqli_fetch_array(mysqli_query($conn, "select * from categories where id='$cid'"));
+            $cat_url = $cat_row['url'];
+          ?>
                     <article class="flex-box next-article has-post-thumbnail">
 
-                        <div class="post-thumbnail">
-                            <a href="http://www.3forty.media/ruki/?p=163"><noscript><img width="600" height="600" src="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-600x600.jpg" class="attachment-ruki-square-image size-ruki-square-image wp-post-image" alt="" srcset="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-600x600.jpg 600w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-300x300.jpg 300w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-100x100.jpg 100w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1024x1024.jpg 1024w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-150x150.jpg 150w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-768x768.jpg 768w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1536x1536.jpg 1536w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1250x1250.jpg 1250w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2.jpg 1600w" sizes="(max-width: 600px) 100vw, 600px" data-attachment-id="148" data-permalink="http://www.3forty.media/ruki/?attachment_id=148" data-orig-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2.jpg" data-orig-size="1600,1599" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="kawaii-donut-2" data-image-description="" data-medium-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-300x300.jpg" data-large-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1024x1024.jpg" /></noscript><img width="600" height="600" src="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-600x600.jpg" data-src="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-600x600.jpg" class="attachment-ruki-square-image size-ruki-square-image wp-post-image ls-is-cached lazyloaded" alt="" data-srcset="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-600x600.jpg 600w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-300x300.jpg 300w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-100x100.jpg 100w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1024x1024.jpg 1024w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-150x150.jpg 150w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-768x768.jpg 768w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1536x1536.jpg 1536w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1250x1250.jpg 1250w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2.jpg 1600w" data-sizes="(max-width: 600px) 100vw, 600px" data-attachment-id="148" data-permalink="http://www.3forty.media/ruki/?attachment_id=148" data-orig-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2.jpg" data-orig-size="1600,1599" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="kawaii-donut-2" data-image-description="" data-medium-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-300x300.jpg" data-large-file="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1024x1024.jpg" sizes="(max-width: 600px) 100vw, 600px" srcset="http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-600x600.jpg 600w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-300x300.jpg 300w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-100x100.jpg 100w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1024x1024.jpg 1024w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-150x150.jpg 150w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-768x768.jpg 768w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1536x1536.jpg 1536w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2-1250x1250.jpg 1250w, http://www.3forty.media/ruki/wp-content/uploads/2020/06/kawaii-donut-2.jpg 1600w"></a>
-                        </div>
+                         
                         <header class="entry-header">
                             <div class="entry-meta before-title prev-next-pill">
                                 <span>next post</span>
                             </div>
-                            <h3 class="entry-title"><a href="http://www.3forty.media/ruki/?p=163">Everything travelling set how law literature</a></h3>
+                            <h3 class="entry-title"><a href="<?php echo $cat_url ;?>/<?php echo $prow['url'] ;?>"><?php echo $prow['title'] ;?></a></h3>
                         </header>
                     </article>
+
+
                 </div>
+
+                <?php } ?>
 
 
                
@@ -444,6 +455,28 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
 
 
     <script defer src="js/main2.js"></script>
+    <?php 
+  $date = date('Y-m-d');
+$ip=$_SERVER['REMOTE_ADDR'];
+
+$post_id=$prow['id'];
+  $viewed=mysqli_num_rows(mysqli_query($conn,"select id from pageviews where data_id='$post_id' and type='POST' and view_ip='$ip' and viewed_on='$date' "));
+  if($viewed==0)
+  {
+   
+
+    mysqli_query($conn,"update posts set views=views+1 where id='$post_id'");
+
+    mysqli_query($conn,"insert into pageviews(data_id,type,viewed_on,view_ip) values('$post_id','POST','$date','$ip')");
+
+  }
+ //echo mysqli_error($conn)
+    
+
+
+
+
+?>
 </body>
 
 </html>

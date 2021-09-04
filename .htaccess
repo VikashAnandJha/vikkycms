@@ -1,3 +1,6 @@
 RewriteEngine On
 RewriteRule ^pages/([a-zA-Z0-9_-]+)$ pages.php?page_id=$1
 RewriteRule ^pages/([a-zA-Z0-9_-]+)/$ pages.php?page_id=$1
+
+ RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ post_details.php?post_id=$2&cat_id=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/$ post_details.php?post_id=$2&cat_id=$1
