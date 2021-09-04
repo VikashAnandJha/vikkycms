@@ -3,7 +3,7 @@ $post_id = $_GET['post_id'];
 $cat_id = $_GET['cat_id'];
 $siteInfoRow = mysqli_fetch_array(mysqli_query($conn, "select * from website_metadata where id='1'"));
 $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$post_id' or url='$post_id'"));
-
+  $post_id=$prow['id'];
 
 ?>
 <!DOCTYPE html>
@@ -226,7 +226,7 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
 
 
 
-                    <div class="post-thumbnail">
+                    <div class="post-thumbnail" style="display: <?php if(!$prow['featured_image'])echo 'none'; ?>;">
 
 
                        
@@ -245,7 +245,7 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
                     <?php
                         $aid = $prow['author'];
                         $cid = $prow['cat_id'];
-                        $post_id = $prow['post_id'];
+                        $post_id = $prow['id'];
                         if ($aid == '-1') $aid = 1;
 
 
@@ -382,13 +382,14 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
                     <h2 class="screen-reader-text">Post navigation</h2>
 
                     <?php
-		 
-         $next_post=$post_id-1;
-         $postq = mysqli_query($conn, "select * from posts where status='PUBLISHED' and id='$next_post'");
+		  
+         $postq = mysqli_query($conn, "select * from posts where status='PUBLISHED' and id<$post_id limit 1");
    while ($postrow = mysqli_fetch_array($postq)) {
+    $prow=$postrow;
              $cid=$postrow['cat_id'];
             $cat_row = mysqli_fetch_array(mysqli_query($conn, "select * from categories where id='$cid'"));
             $cat_url = $cat_row['url'];
+           
           ?>
                     <article class="flex-box next-article has-post-thumbnail">
 
@@ -407,9 +408,10 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
                 <?php } ?>
                     <?php
 		 
-         $next_post=$post_id+1;
-         $postq = mysqli_query($conn, "select * from posts where status='PUBLISHED' and id='$next_post'");
+        // $next_post=$post_id+1;
+         $postq = mysqli_query($conn, "select * from posts where status='PUBLISHED' and id>$post_id limit 1");
    while ($postrow = mysqli_fetch_array($postq)) {
+    $prow=$postrow;
              $cid=$postrow['cat_id'];
             $cat_row = mysqli_fetch_array(mysqli_query($conn, "select * from categories where id='$cid'"));
             $cat_url = $cat_row['url'];
@@ -458,8 +460,7 @@ $prow = mysqli_fetch_array(mysqli_query($conn, "select * from posts where id='$p
     <?php 
   $date = date('Y-m-d');
 $ip=$_SERVER['REMOTE_ADDR'];
-
-$post_id=$prow['id'];
+   $post_id;
   $viewed=mysqli_num_rows(mysqli_query($conn,"select id from pageviews where data_id='$post_id' and type='POST' and view_ip='$ip' and viewed_on='$date' "));
   if($viewed==0)
   {
