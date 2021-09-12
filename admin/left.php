@@ -48,7 +48,10 @@
              
           </ul>
         </li>
-       
+   
+
+        <?php if($type=='ADMIN'){ ?>
+              
       <li class="<?php if($page=="pages") echo 'menu-open active'; ?> " ><a href="pages.php?show=list"><i class="fa fa-file"></i> <span>Pages</span></a></li>
       <li class=" <?php if($page=="comments") echo 'menu-open active'; ?>" style="display: none;"><a href="comments.php"><i class="fa fa-comments"></i> <span>Comments</span></a></li>
        <li class="treeview <?php if($page=="menu") echo 'menu-open active'; ?>">
@@ -69,6 +72,7 @@
               <ul class="treeview-menu" style="display: none;">
               <li><a href="settings.php?show=metadata"><i class="fa fa-angle-right"></i>Metadata</a></li>
               <li><a href="settings.php?show=logo"><i class="fa fa-angle-right"></i>Logo</a></li>
+              <li><a href="settings.php?show=code"><i class="fa fa-angle-right"></i>Common Codes</a></li>
                  
               </ul>
             </li>
@@ -76,6 +80,10 @@
           </ul>
         </li>
        
+     
+     <?php } ?>
+     
+     
       </ul>
     </div>
     <!-- /.sidebar --> 

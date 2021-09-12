@@ -17,23 +17,37 @@
                                                             <th>PostID</th>
                                                             <th>title</th>
                                                             <th>Category</th>
-                                                            <th>views</th>
+                                                            <th>Todayviews</th>
+                                                            <th>Totalviews</th>
                                                             <th>status</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $aq = mysqli_query($conn, "select * from posts order by id desc");
- 
+                                                        $pq="select * from posts";
+
+                                                        if($type=='AUTHOR')$pq=$pq. "  where author='$uid' ";
+
+                                                        $pq=$pq. "  order by id desc";
+                                                        $aq = mysqli_query($conn,$pq );
+                                                        $date = date('Y-m-d');
 
                                                         while ($arow = mysqli_fetch_array($aq)) {
+                                                            $cat_id=$arow['cat_id'];
+                                                            $catrow=mysqli_fetch_array(mysqli_query($conn,"select * from categories where id='$cat_id'"));
 
+                                                             if($cat_id==0) $cat_name="UNCATEGORIZED";
+                                                             else
+                                                             $cat_name=$catrow['name'];
+                                                             $post_id = $arow['id'];
+                                                             $todayViews=mysqli_num_rows(mysqli_query($conn,"select * from pageviews where data_id='$post_id' and type='POST' and viewed_on='$date'"));
 
                                                         ?>
                                                             <tr>
                                                                 <td><a href="posts.php?post_id=<?php echo $arow['id']; ?>&show=edit"><?php echo $arow['id']; ?></a></td>
                                                                 <td><?php echo $arow['title']; ?></td>
-                                                                <td><?php echo $arow['cat_id']; ?></td>
+                                                                <td><?php echo $cat_name; ?></td>
+                                                                <td><?php echo $todayViews; ?></td>
                                                                 <td><?php echo $arow['views']; ?></td>
                                                                 <td><span class="badge bg-<?php if($arow['status']=="PUBLISHED") 
                                                                 echo "green";if($arow['status']=="HIDDEN") echo "red";if($arow['status']=="DRAFT") echo "aqua"; ?>">

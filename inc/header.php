@@ -1,4 +1,5 @@
- 
+<?php echo $siteInfoRow['common_code']; ?>
+
 <header id="site-header" class="site-header logo-left-menu sticky-nav sticky-mobile-nav">
 
 	<!-- mobile header  -->

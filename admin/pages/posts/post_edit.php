@@ -116,7 +116,7 @@ $cat_url=$cbq['url'];
                     CATEGORY
                     <br>
                     <select name="cat_id" class="for0m-control">
-                        <option value="0">UNCATEGORISED</option>
+                        
                         <?php
 
                         $cbq = mysqli_query($conn, "select * from categories order by name asc");
@@ -141,7 +141,9 @@ $cat_url=$cbq['url'];
 
                         </select>
                         <br><br>
+                        <?php if($uid==$pRow['author'] || $type=='ADMIN'){ ?>
                         <button class="btn btn-primary btn-sm  " type="submit">UPDATE</button>
+                        <?php } ?>
                     </fieldset>
                     <hr>
                     <a target="_blank" href="<?php echo $siteRow['base_url']; ?>/<?php echo $cat_url; ?>/<?php echo $pRow['url']; ?>">View Post</a>
@@ -159,7 +161,9 @@ $cat_url=$cbq['url'];
                             <input type="file" class="dropify" name="image" data-default-file="../uploads/images/<?php echo $pRow['featured_image']; ?>" />
 
                         </fieldset>
+                       <?php if($uid==$pRow['author'] || $type=='ADMIN' ){ ?>
                         <input type="submit" value="update" class="btn btn-primary">
+                        <?php } ?>
                     </form>
 
 

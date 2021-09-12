@@ -22,16 +22,19 @@
           </a>
             <ul class="dropdown-menu">
             <li><a href="create.php?type=post"><i class="fa fa-sticky-note-o"></i> New POST</a></li>
+            <?php if($type=='ADMIN'){ ?>
             <li><a href="create.php?type=page"><i class="fa fa-sticky-note-o"></i> New PAGE</a></li>
+            <?php } ?>
             </ul>
             </li>
         
           <!-- User Account  -->
-          <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/img1.jpg" class="user-image" alt="User Image">
+          <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+            <img src="../uploads/images/<?php echo $avatar; ?>" class="user-image" alt="User Image">
            <span class="hidden-xs"><?php echo $name; ?></span> </a>
             <ul class="dropdown-menu">
               <li class="user-header">
-                <div class="pull-left user-img"><img src="dist/img/img1.jpg" class="img-responsive img-circle" alt="User"></div>
+                <div class="pull-left user-img"><img src="../uploads/images/<?php echo $avatar; ?>" class="img-responsive img-circle" alt="User"></div>
                 <p class="text-left"><?php echo $username; ?> <small><?php echo $name; ?></small> </p>
               </li>
                 

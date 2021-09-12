@@ -68,6 +68,7 @@ $show=$_GET['show']; ?>
 
 if($show=="metadata")  include 'pages/settings/metadata_settings.php' ;
 if($show=="logo")  include 'pages/settings/logo_settings.php' ;
+if($show=="code")  include 'pages/settings/code_settings.php' ;
 
 ?>
 

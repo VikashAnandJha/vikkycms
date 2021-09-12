@@ -144,14 +144,14 @@ AND YEAR(viewed_on) = YEAR(CURRENT_DATE())"));
                 <hr>
                 <div class="row">
 
-                <div class="col-lg-2">
+                  <div class="col-lg-2">
                     <div class="card">
                       <div class="card-body box-rounded box-gradient-3"> <span class="info-box-icon bg-transparent">
                           <i class="ti-stats-up text-white text-white"></i></span>
                         <div class="info-box-content">
                           <h6 class="info-box-text text-white">Draft Posts</h6>
                           <h1 class="text-white"><?php echo $draft_total; ?></h1>
-                         </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -162,7 +162,7 @@ AND YEAR(viewed_on) = YEAR(CURRENT_DATE())"));
                         <div class="info-box-content">
                           <h6 class="info-box-text text-white">PendingComments</h6>
                           <h1 class="text-white"><?php echo $comments_pending; ?></h1>
-                         </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -173,7 +173,7 @@ AND YEAR(viewed_on) = YEAR(CURRENT_DATE())"));
                         <div class="info-box-content">
                           <h6 class="info-box-text text-white">Total Posts</h6>
                           <h1 class="text-white"><?php echo $posts_total; ?></h1>
-                         </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -184,17 +184,83 @@ AND YEAR(viewed_on) = YEAR(CURRENT_DATE())"));
                         <div class="info-box-content">
                           <h6 class="info-box-text text-white">Total Pages</h6>
                           <h1 class="text-white"><?php echo $pages_total; ?></h1>
-                         </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  
-                  
+
+
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+
+        <style>
+          .badge-light {
+            color: black;
+          }
+        </style>
+      <div class="box">
+      <div class="box-body">
+          <h3>Recent Posts</h3>
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
+                <tr>
+                  <th>PostID</th>
+                  <th>title</th>
+                  <th>Category</th>
+                  <th>Todayviews</th>
+                  <th>Totalviews</th>
+                  <th>status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $pq = "select * from posts";
+
+                if ($type == 'AUTHOR') $pq = $pq . "  where author='$uid' ";
+
+                $pq = $pq . "  order by id desc limit 5";
+                $aq = mysqli_query($conn, $pq);
+                $date = date('Y-m-d');
+
+                while ($arow = mysqli_fetch_array($aq)) {
+                  $cat_id = $arow['cat_id'];  $post_id = $arow['id'];
+                  $catrow = mysqli_fetch_array(mysqli_query($conn, "select * from categories where id='$cat_id'"));
+
+                  if ($cat_id == 0) $cat_name = "UNCATEGORIZED";
+                  else
+                    $cat_name = $catrow['name'];
+
+
+                    $todayViews=mysqli_num_rows(mysqli_query($conn,"select * from pageviews where data_id='$post_id' and type='POST' and viewed_on='$date'"));
+
+                ?>
+                  <tr>
+                    <td><a href="posts.php?post_id=<?php echo $arow['id']; ?>&show=edit"><?php echo $arow['id']; ?></a></td>
+                    <td><?php echo $arow['title']; ?></td>
+                    <td><?php echo $cat_name; ?></td>
+                    <td><?php echo $todayViews; ?></td>
+                    <td><?php echo $arow['views']; ?></td>
+                    <td><span class="badge bg-<?php if ($arow['status'] == "PUBLISHED")
+                                                echo "green";
+                                              if ($arow['status'] == "HIDDEN") echo "red";
+                                              if ($arow['status'] == "DRAFT") echo "aqua"; ?>">
+                        <?php echo $arow['status']; ?></span></td>
+
+                  </tr>
+
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.table-responsive -->
+        </div>
+      </div>
+
       </div>
       <!-- /.content -->
     </div>

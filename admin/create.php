@@ -24,14 +24,14 @@ if($type=="page")
 }
 if($type=="cat")
 {
-    $q=mysqli_query($conn,"insert into categories(name,status,created_by) values('Test CAtegory','HIDDEN','-1')");
+    $q=mysqli_query($conn,"insert into categories(name,status,created_by) values('Test CAtegory','HIDDEN','$uid')");
     $last_id = mysqli_insert_id($conn);
     header('location:categories.php?show=edit&cat_id='.$last_id);
 }
 if($type=="post")
 {
 
-    $q=mysqli_query($conn,"insert into posts(title,status,author,created_at) values('Sample Post','DRAFT','-1','$current_time')");
+    $q=mysqli_query($conn,"insert into posts(title,status,author,created_at,cat_id) values('Sample Post','DRAFT','$uid','$current_time','5')");
     $last_id = mysqli_insert_id($conn);
     header('location:posts.php?show=edit&post_id='.$last_id);
 }

@@ -8,8 +8,9 @@ $password=mysqli_real_escape_string($conn,$_POST['password']);
 
 
 
-
-$q=mysqli_query($conn,"select * from cms_admin where username='$username' and password='$password'");
+$query="select * from authors where username='$username' and password='$password' and status='ACTIVE'";
+ 
+$q=mysqli_query($conn,$query);
 
 
 $found=mysqli_num_rows($q);
@@ -29,7 +30,8 @@ $_SESSION['uid']=$uid;
 $_SESSION['name']=$drow['name'];
 $_SESSION['username']=$drow['username'];
 
-$_SESSION['type']="cms_admin";
+$_SESSION['type']=$drow['role'];
+$_SESSION['avatar']=$drow['avatar'];
 
 
 
@@ -53,7 +55,7 @@ header('location:home.php');
 
 }else{
 
-   
+  
 	header("location:index.php?msg=Invalid+Login+Details");
 }
 

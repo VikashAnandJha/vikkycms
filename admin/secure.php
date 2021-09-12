@@ -8,8 +8,9 @@ $type=$_SESSION['type'];
 
 $name=$_SESSION['name'];
 $username=$_SESSION['username'];
-
-if(!isset($uid) || $type!='cms_admin' )
+$avatar=$_SESSION['avatar'];
+ 
+if(!isset($uid) && ($type!='ADMIN' || $type!='AUTHOR')  )
 {
 	header("location:index.php?msg=You have to login first");
 	

@@ -74,7 +74,7 @@ if ($action == "add" && $name) {
 
     $url=createSlug($name, $delimiter = '-');
     $url = substr($url, 0, 25); //first 5 chars "Hello"
-    $q=mysqli_query($conn,"insert into tags(name,url,created_by) values('$name','$url','-1')");
+    $q=mysqli_query($conn,"insert into tags(name,url,created_by) values('$name','$url','$uid')");
 
     if ($q) echo "<font color=green><b>TAG Added</b></font>";
     else
@@ -126,8 +126,13 @@ if ($action == "add" && $name) {
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $aq = mysqli_query($conn, "select * from tags order by id desc");
- 
+                                                        
+                                                        $pq="select * from tags";
+
+                                                        if($type=='AUTHOR')$pq=$pq. "  where created_by='$uid' ";
+
+                                                        $pq=$pq. "  order by id desc";
+                                                        $aq = mysqli_query($conn,$pq );
 
                                                         while ($arow = mysqli_fetch_array($aq)) {
 
